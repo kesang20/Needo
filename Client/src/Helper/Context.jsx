@@ -15,9 +15,22 @@ export function GlobalContextProvider({children}) {
   const [submitStatus, setSubmitStatus] = useState(false);
   const [noMovie, setNoMovie] = useState(false);
   const [LoggedIn, setLoggedIn] = useState(false);
+  const [favorite, setFavorites] = useState([]);
+  const [userName, setUserName] = useState('');
 
-    function getMovie() {
-      axios
+  function getFavorite (userName) {
+    axios
+      .get('/favorites', {
+        params: {username: userName}
+      })
+      .then(({ data }) => {
+        setFavorites(data);
+      })
+      .catch((error) => console.log(error));
+  }
+
+  function getMovie() {
+    axios
       .get('/movie', {
         params: options,
       })
@@ -28,13 +41,26 @@ export function GlobalContextProvider({children}) {
       .catch((err) => {
         console.log(err);
       });
-    }
+  }
+
+  function addMovie(movie) {
+    axios
+      .post('/addMovie', {username: userName, movies_id: movie})
+      .then((response) => {
+        getFavorite();
+      })
+      .catch((error) => console.log(error));
+  }
 
   const dependencies = [
     options,
     movie,
     submitStatus,
-    noMovie
+    noMovie,
+    LoggedIn,
+    favorite,
+    userName,
+    addMovie
   ]
 
   const value = useMemo(() => ({
@@ -45,7 +71,14 @@ export function GlobalContextProvider({children}) {
     setSubmitStatus,
     noMovie,
     getMovie,
-    LoggedIn
+    LoggedIn,
+    setLoggedIn,
+    favorite,
+    setFavorites,
+    userName,
+    setUserName,
+    getFavorite,
+    addMovie
   }), dependencies);
 
   return (

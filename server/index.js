@@ -32,6 +32,7 @@ app.get('/movie', (req, res) => {
     .catch(err => console.log(err));
 })
 
+
 app.post('/addMovie', (req, res) => {
   const{username, movies_id} = req.body;
   console.log(username);
@@ -73,7 +74,7 @@ app.get('/favorites', (req, res) => {
 
   db.query(query, [username])
     .then(({rows}) => {
-      const id  = rows[0].id;
+      const id  = rows[0]?.id;
       db.query(query1, [id])
         .then(({rows}) => {
           res.status(200).send(rows);

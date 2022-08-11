@@ -6,9 +6,10 @@ const Description = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   height: 14%;
-  margin-left: 5vw;
-  margin-top: 2%;
+  margin: 2% auto;
+  width: 80%;
 `;
+
 
 
 export default function Movie(props) {
@@ -29,10 +30,7 @@ export default function Movie(props) {
         <p>synopsis: {props.movie.synopsis}</p>
         <span>Duration: {props.movie.duration}</span>
       </div>
-      <div>
-        <button>Randomize</button>
-        <button>Add To Watch List</button>
-      </div>
+
     </Description>
       </>
   )

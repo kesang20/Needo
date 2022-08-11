@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Modal from './Modal.jsx';
 import { useGlobalContext } from '../Helper/Context.jsx';
 
 const UserContainer = styled.div`
@@ -24,14 +25,12 @@ const SignIn = styled.button`
 `;
 
 export default function User () {
-  const { LoggedIn } = useGlobalContext();
+  const { LoggedIn, userName } = useGlobalContext();
   return (
     <UserContainer>
       {LoggedIn === false ?
-        <SignIn>
-          LogIn/SignUp
-        </SignIn>
-        : null}
+        <Modal sign={'Log In/ Sign Up'} />
+        : <h1>{userName}</h1>}
     </UserContainer>
   )
 }

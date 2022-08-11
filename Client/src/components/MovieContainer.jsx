@@ -24,7 +24,6 @@ const MovieBox = styled.div`
 `;
 
 const FavMovies = styled.div`
-  margin-top: 2rem;
   display: grid;
   grid-column: auto;
   width: 100%;
@@ -46,8 +45,31 @@ const H4 = styled.h4`
   font-weight: bold;
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  width: 20vw;
+  justify-content: space-evenly;
+  position: fixed;
+  bottom: 15vh;
+  @media(max-width: 1300px) {
+    flex-direction: column;
+    width: 19vw;
+    bottom: 12vh;
+  }
+`;
+
+const Button = styled.button`
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+`;
+
 export default function MovieContainer() {
-  const { movie, noMovie } = useGlobalContext();
+  const { movie, noMovie, getMovie, favorite, addMovie, LoggedIn } = useGlobalContext();
+  const favorites = favorite.forEach((fav) => {return (<H4>fav</H4>)});
+  
   return (
     <Container>
       <SideBar>
@@ -55,11 +77,16 @@ export default function MovieContainer() {
         <div>
           <H2>Favorites</H2>
         </div>
-          <H4>Fate/Zero</H4>
-          <H4>Marvel</H4>
+         {favorites}
         </FavMovies>
+        <ButtonContainer>
+        <Button onClick={() => getMovie()}>Randomize</Button>
+        {LoggedIn === true ?
+        <Button onClick={() => addMovie(movie.id)}>+ Add to Fav</Button> : null}
+      </ButtonContainer>
         <User/>
       </SideBar>
+
       {/* Future Implementation  */}
       {/* {noMovie === true ? <ModalComponent /> : null} */}
       <MovieBox>

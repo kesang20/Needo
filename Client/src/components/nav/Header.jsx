@@ -8,8 +8,18 @@ const Nav = styled.nav`
   background: red;
 `;
 const Logo = styled.h1`
-padding: 2rem;
+font-size: 34px;
+font-weight: bold;
+padding: 0 4rem;
 `
+
+const LogoDesc = styled.p`
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0 4rem 1rem;
+`
+
 const Form = styled.div`
 height: 5rem ;
 position: fixed;
@@ -21,6 +31,7 @@ export default function Header () {
   return(
   <Nav>
     <Logo>Needo</Logo>
+    <LogoDesc>An assistant for movie nights!!!</LogoDesc>
     <Form><MovieForm/></Form>
   </Nav>
   )
