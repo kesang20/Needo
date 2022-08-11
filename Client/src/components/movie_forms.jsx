@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useGlobalContext } from '../Helper/Context.jsx';
-import {Select, HStack} from '@chakra-ui/react';
+import {Select, HStack, Button} from '@chakra-ui/react';
+import { BiSearchAlt } from 'react-icons';
+
 export default function MovieForm(props) {
-  const { options, setOptions, submitStatus, setSubmitStatus } = useGlobalContext();
-  //year array
-  const yearOptions = [];
-  for (let year = 2020; year >= 1902; year--) {
-    yearOptions.push(<option value={year}>{year}</option>);
-  }
+  const { options, setOptions, getMovie } = useGlobalContext();
+  // year array ________________________________________Future improvements when get better data
+  // const yearOptions = [];
+  // for (let year = 2020; year >= 1902; year--) {
+  //   yearOptions.push(<option value={year}>{year}</option>);
+  // }
 
   // genre array
   const genres = ["Action", "Anime", "Award-Winning", "Children & Family", "Classic", "Comedies", "Crime", "Cult", "Documentaries", "Dramas", "Fantasy", "French", "Horror", "Independent", "International", "Italian", "Music & Musicals", "Reality TV", "Romance", "Sci-Fi", "Thriller", "TV Show"];
@@ -24,13 +26,11 @@ export default function MovieForm(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(submitStatus);
-    setSubmitStatus(!submitStatus)
+    console.log('submit');
+    getMovie();
   }
 
   return(
-
-      <form onSubmit={submitHandler} >
          <HStack spacing='20px'>
         <Select
           w='180px'
@@ -45,8 +45,8 @@ export default function MovieForm(props) {
           {genreOptions}
         </Select>
 
-
-        <Select
+{/* future improvement when get better data */}
+        {/* <Select
           w='180px'
           h='40px'
           size='sm'
@@ -57,12 +57,9 @@ export default function MovieForm(props) {
         >
           <option value="">Select a Year</option>
           {yearOptions}
-        </Select>
-        <input type="submit" />
+        </Select> */}
+        <Button LeftIcon={BiSearchAlt} colorScheme='red' size='md' onClick={submitHandler}>Search</Button>
         </HStack>
-      </form>
-
-
   )
 }
 

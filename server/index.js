@@ -22,7 +22,7 @@ app.get('/movie', (req, res) => {
   console.log(year, genre);
 
   const query = `SELECT * from movies
-                where genre='${genre}' AND year >= ${year}`;
+                where genre='${genre}'`;
   db.query(query)
     .then(({rows}) => {
       const number = Math.floor(Math.random() * rows.length);

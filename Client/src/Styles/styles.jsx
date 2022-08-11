@@ -7,11 +7,7 @@ export const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
   }
   #movie {
-    height: 100%;
+    height: 80%;
+    width: 100%;
   }
 `;
-
-
-// export const Form =
-// // export const Logo = styled.img`
-// // `

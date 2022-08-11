@@ -9,12 +9,13 @@ export function useGlobalContext() {
 
 export function GlobalContextProvider({children}) {
 
-
-  const [options, setOptions] = useState({genre: '', year: ''});
+// add years as an option future improvement --> when get better data
+  const [options, setOptions] = useState({genre: ''});
   const [movie, setMovie] = useState({});
   const [submitStatus, setSubmitStatus] = useState(false);
   const [noMovie, setNoMovie] = useState(false);
-  useEffect(() => {
+  const [LoggedIn, setLoggedIn] = useState(false);
+
     function getMovie() {
       axios
       .get('/movie', {
@@ -28,8 +29,6 @@ export function GlobalContextProvider({children}) {
         console.log(err);
       });
     }
-    getMovie();
-  }, [submitStatus]);
 
   const dependencies = [
     options,
@@ -44,7 +43,9 @@ export function GlobalContextProvider({children}) {
     setOptions,
     submitStatus,
     setSubmitStatus,
-    noMovie
+    noMovie,
+    getMovie,
+    LoggedIn
   }), dependencies);
 
   return (
