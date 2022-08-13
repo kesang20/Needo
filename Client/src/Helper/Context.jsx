@@ -18,16 +18,23 @@ export function GlobalContextProvider({children}) {
   const [favorite, setFavorites] = useState([]);
   const [userName, setUserName] = useState('');
 
-  function getFavorite (userName) {
+
+  function getFavorite () {
     axios
       .get('/favorites', {
         params: {username: userName}
       })
       .then(({ data }) => {
         setFavorites(data);
+        console.log(data);
+        console.log(userName);
       })
       .catch((error) => console.log(error));
   }
+
+  useEffect(() => {
+    getFavorite();
+  }, [userName]);
 
   function getMovie() {
     axios
@@ -77,7 +84,6 @@ export function GlobalContextProvider({children}) {
     setFavorites,
     userName,
     setUserName,
-    getFavorite,
     addMovie
   }), dependencies);
 

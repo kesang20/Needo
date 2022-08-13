@@ -15,7 +15,7 @@ export default function MovieForm(props) {
   const genres = ["Action", "Anime", "Award-Winning", "Children & Family", "Classic", "Comedies", "Crime", "Cult", "Documentaries", "Dramas", "Fantasy", "French", "Horror", "Independent", "International", "Italian", "Music & Musicals", "Reality TV", "Romance", "Sci-Fi", "Thriller", "TV Show"];
   const genreOptions = [];
   for (let i = 0; i < genres.length; i++) {
-    genreOptions.push(<option value={genres[i]}>{genres[i]}</option>);
+    genreOptions.push(<option key={genres[i]+i} value={genres[i]}>{genres[i]}</option>);
   };
 
   const handleChange = (e) => {

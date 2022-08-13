@@ -9,6 +9,7 @@ const Container = styled.div`
   display: flex;
   width: 100vw;
   height: 90vh;
+  background: black;
 `;
 
 const SideBar = styled.div`
@@ -27,20 +28,24 @@ const FavMovies = styled.div`
   display: grid;
   grid-column: auto;
   width: 100%;
-  max-height: 50vh;
+  max-height: 60vh;
   row-gap: 1rem;
   overflow-y: scroll;
   text-align: center;
+  backrground: #df3232;
 `;
 
 const H2 = styled.h2`
   font-size: 32px;
   font-weight: bold;
-  border: 2px solid white;
-  background: black;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  backround: #df3232;
+  position: fixed;
+  width: 20vw;
 `;
 
-const H4 = styled.h4`
+const H4 = styled.button`
   font-size: 18px;
   font-weight: bold;
 `;
@@ -68,13 +73,16 @@ const Button = styled.button`
 
 export default function MovieContainer() {
   const { movie, noMovie, getMovie, favorite, addMovie, LoggedIn } = useGlobalContext();
-  const favorites = favorite.forEach((fav) => {return (<H4>fav</H4>)});
-  
+  const favorites = favorite.map((fav) => {return (<H4 onClick={clickHandler}>{fav.title}</H4>)});
+  const clickHandler = () => {
+
+  }
+
   return (
     <Container>
       <SideBar>
         <FavMovies>
-        <div>
+        <div style={{marginBottom: '2rem'}}>
           <H2>Favorites</H2>
         </div>
          {favorites}

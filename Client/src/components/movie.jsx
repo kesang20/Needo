@@ -8,6 +8,7 @@ const Description = styled.div`
   height: 14%;
   margin: 2% auto;
   width: 80%;
+  color: white;
 `;
 
 
@@ -16,7 +17,7 @@ export default function Movie(props) {
   return (
     <>
       <video id='movie'
-        autoplay
+        autoPlay
         controls
         src={props.movie.thumbnail} type="video/mp4"
         onMouseOver={event => event.target.play()}

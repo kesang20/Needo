@@ -17,7 +17,7 @@ import { useGlobalContext } from '../Helper/Context.jsx';
 
 export default function ModalComponent(props) {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { setLoggedIn, setUserName, getFavorite} = useGlobalContext();
+  const { setLoggedIn, setUserName } = useGlobalContext();
   const [username, setUsername] = useState('');
 
   const changeHandler = (e) => {
@@ -27,7 +27,6 @@ export default function ModalComponent(props) {
   const clickHandler = () => {
     setLoggedIn(true);
     setUserName(username);
-    getFavorite();
   }
 
   return (
