@@ -40,7 +40,7 @@ Random Netflix Movie Generator
 `5. Create a dropdown select menu from which user can select genre to filter movies`
 
 ## Application ScreenShot:
-/Users/kesang/Desktop/HackReactor/mvp/Needo/assets/
+
 <p align="center">
 <img src="/assets/Screen Shot 2022-08-24 at 9.41.47 PM.png" alt="screenshot of application" width="70%"/>
 </p>
