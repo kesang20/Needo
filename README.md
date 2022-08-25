@@ -1,6 +1,6 @@
-# **Needo** 
+# **Needo**
 
-Random Netflix Movie Generator
+A Netflix movie randomize selector for indisive people
 
 
 ## Installation Instructions:
@@ -47,9 +47,10 @@ Random Netflix Movie Generator
 
 ## Technologies Used:
 
-- React v8.2.0
+- React v18.2.0
 - Express v4.18.1
 - Chakra-UI v2.2.6
+- Styled-Components v5.3.5
 - Axios v0.27.2
 - Babel v7.18.10
 - Webpack v5.74.0
