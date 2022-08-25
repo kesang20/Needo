@@ -1,2 +1,5 @@
-# Needo
-Random Netflix Movie Generator
+# **Needo**
+## Random Netflix Movie Generator
+
+#Installation
+
