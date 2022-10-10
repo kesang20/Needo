@@ -1,12 +1,40 @@
 // require('dotenv').config();
 const express = require('express');
+const session = require('express-session');
 const path = require('path');
 // const { getAllreviews, getMeta, incrementHelpful, reportReview, insertReview, loaderio } = require('./controller.js')
 const db = require('../db/index.js')
+
+const TWO_HOURS = 1000 * 60 * 60 * 2;
+
+const {
+  PORT = 3000,
+  NODE_ENV = 'development',
+  SESS_NAME = 'sid',
+  SESS_SECRET = 'shh!quiet',
+  SESS_LIFETIME = TWO_HOURS
+} = process.env;
+
+const IN_PROD = NODE_ENV === 'production';
+
 const app = express();
 
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '../Client/dist')));
+
+app.use(session({
+  name: SESS_NAME,
+  resave: false,
+  saveUnitialized: false,
+  secret: SESS_SECRET,
+  cookie: {
+    maxAge: SESS_LIFETIME,
+    sameSite: true,
+    secure: IN_PROD
+  }
+}))
+
+
 
 app.get('/movie', (req, res) => {
   const {genre, year} = req.query;
