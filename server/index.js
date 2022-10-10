@@ -102,4 +102,6 @@ app.get('/favorites', (req, res) => {
     .catch((error) => console.log(error));
 })
 
-app.listen(3000);
+app.listen(PORT, () => {
+  console.log('Listening on Port', PORT);
+});

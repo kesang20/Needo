@@ -19,14 +19,45 @@ export default function ModalComponent(props) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { setLoggedIn, setUserName } = useGlobalContext();
   const [username, setUsername] = useState('');
+  const [ password, setPassword ] = useState('');
+  const [usernameError, setUsernameError] = useState('');
+  const [ passwordError, setPassswordError ] = useState('');
 
   const changeHandler = (e) => {
-    setUsername(e.target.value);
+    // console.log(e.target.type);
+    e.target.type === 'text' ? setUsername(e.target.value) : setPassword(e.target.value);
+  }
+
+  const validate = () => {
+
+    if (!username) {
+      setUsernameError('username must be enter')
+      return false;
+    }
+
+    // password validation
+    // password should include a special character
+    // password should includ a uppercase letter
+    // password should include numbers
+
+    const pattern = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
+    if(!password || !pattern.test(password)) {
+      console.log('not vlaid password')
+      setPassswordError('password must have atleast 8 digits with atleast one lowercase letter, one uppercase letter, one number, and one special character')
+      return false;
+    }
+
+    return true;
   }
 
   const clickHandler = () => {
-    setLoggedIn(true);
-    setUserName(username);
+    let isValid = validate();
+
+    if(isValid) {
+      setLoggedIn(true);
+      setUserName(username);
+    }
   }
 
   return (
@@ -42,10 +73,27 @@ export default function ModalComponent(props) {
           <FormControl>
             <FormLabel>Username</FormLabel>
             <Input type='text' value={username} onChange={changeHandler}/>
-            <FormHelperText>Enter your username</FormHelperText>
-            {/* <FormLabel>Password</FormLabel>
-            <Input type='password' />
-            <FormHelperText>Enter your Password</FormHelperText> */}
+
+            { usernameError ?
+              <FormHelperText color="red">
+                {usernameError}
+              </FormHelperText> :
+              <FormHelperText>
+                Enter your username
+              </FormHelperText>
+            }
+
+            <FormLabel>Password</FormLabel>
+            <Input type='password' value={password} onChange={changeHandler}/>
+
+            { passwordError ?
+              <FormHelperText color="red">
+               {passwordError}
+              </FormHelperText> :
+              <FormHelperText>
+                Enter your Password
+              </FormHelperText>
+            }
           </FormControl>
           </ModalBody>
 
