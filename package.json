@@ -6,8 +6,8 @@
   "main": "server/index.js",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "build": "concurrently \"npm run start\" \"npm run server\"",
+    "deploy": "gh-pages -d client/dist",
+    "build": "concurrently \"webpack --mode production\" \"npm run server\"",
     "server": "npx nodemon --watch server server/index.js",
     "start": "npx webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
