@@ -1,7 +1,7 @@
 {
   "name": "needo",
   "version": "1.0.0",
-  "homepage": "https://gitname.github.io/needo",
+  "homepage": "https://kesang20.github.io/needo",
   "description": "A Netflix movie randomize selector for indisive people",
   "main": "server/index.js",
   "scripts": {
